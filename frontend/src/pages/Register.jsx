@@ -40,7 +40,7 @@ function Register() {
     setError("");
 
     try {
-      await axiosInstance.post("http://localhost:5000/api/auth/register", form);
+      await axiosInstance.post((import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/auth/register", form);
       
       alert("Registration successful! Please login with your credentials.");
       

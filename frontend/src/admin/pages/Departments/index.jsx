@@ -6,7 +6,7 @@ import { PageHeader } from "../../components/ui/PageHeader";
 import { SectionTitle } from "../../components/ui/SectionTitle";
 import { EmptyState } from "../../components/ui/EmptyState";
 
-const API_DEPARTMENTS_URL = "http://localhost:5000/api/admin/departments";
+const API_DEPARTMENTS_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/admin/departments";
 
 export default function Departments() {
   const { token, admin } = useAdminAuth();

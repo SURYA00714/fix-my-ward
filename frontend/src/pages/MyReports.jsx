@@ -19,7 +19,7 @@ function MyReports() {
     const fetchMyIssues = async () => {
       try {
         const token = localStorage.getItem("token");
-        const { data } = await axios.get("http://localhost:5000/api/issues/my", {
+        const { data } = await axios.get((import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/issues/my", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

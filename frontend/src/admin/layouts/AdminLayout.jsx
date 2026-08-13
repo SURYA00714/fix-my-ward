@@ -48,7 +48,7 @@ export default function AdminLayout() {
   const fetchBellNotifications = useCallback(async () => {
     if (!token) return;
     try {
-      const res = await axios.get("http://localhost:5000/api/admin/notifications?limit=5&read=ALL", {
+      const res = await axios.get((import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/admin/notifications?limit=5&read=ALL", {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (res.data.success) {
@@ -68,7 +68,7 @@ export default function AdminLayout() {
 
   const handleMarkBellRead = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/admin/notifications/${id}/read`, {}, {
+      await axios.put(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/admin/notifications/${id}/read`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setRecentNotifications((prev) => prev.map((n) => (n.id === id ? { ...n, read: true } : n)));
@@ -80,7 +80,7 @@ export default function AdminLayout() {
 
   const handleMarkAllBellRead = async () => {
     try {
-      await axios.put("http://localhost:5000/api/admin/notifications/read-all", {}, {
+      await axios.put((import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/admin/notifications/read-all", {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setRecentNotifications((prev) => prev.map((n) => ({ ...n, read: true })));

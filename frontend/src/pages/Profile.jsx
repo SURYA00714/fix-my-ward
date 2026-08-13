@@ -29,11 +29,11 @@ function Profile() {
         const headers = { Authorization: `Bearer ${token}` };
 
         // Fetch reports count
-        const { data: userIssues } = await axios.get("http://localhost:5000/api/issues/my", { headers });
+        const { data: userIssues } = await axios.get((import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/issues/my", { headers });
         setStats({ reported: userIssues.length });
 
         // Fetch authenticated user credentials
-        const { data: me } = await axios.get("http://localhost:5000/api/auth/me", { headers });
+        const { data: me } = await axios.get((import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/auth/me", { headers });
         if (me) {
           setProfile({
             name: me.name || "Citizen",

@@ -9,7 +9,7 @@ import { StatusBadge } from "../../components/ui/StatusBadge";
 import { PriorityBadge } from "../../components/ui/PriorityBadge";
 import { EmptyState } from "../../components/ui/EmptyState";
 
-const API_BASE_URL = "http://localhost:5000/api/admin/departments";
+const API_BASE_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/admin/departments";
 
 export default function DepartmentDetails() {
   const { departmentName } = useParams();

@@ -52,7 +52,7 @@ function PublicReports() {
 
         try {
           // Fetch nearby issues (within 10km) using our updated backend endpoint
-          const { data } = await axios.get(`http://localhost:5000/api/issues?lat=${lat}&lng=${lng}&radius=10000`);
+          const { data } = await axios.get(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/issues?lat=${lat}&lng=${lng}&radius=10000`);
           setIssues(data);
         } catch (error) {
           console.error("Error fetching nearby issues:", error);
@@ -72,7 +72,7 @@ function PublicReports() {
     try {
       const token = localStorage.getItem("token");
       const { data } = await axios.post(
-        `http://localhost:5000/api/issues/${id}/upvote`,
+        `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/issues/${id}/upvote`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

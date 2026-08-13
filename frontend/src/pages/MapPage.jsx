@@ -24,7 +24,7 @@ function MapPage() {
   useEffect(() => {
     const fetchIssues = async () => {
       try {
-        const { data } = await axios.get("http://localhost:5000/api/issues");
+        const { data } = await axios.get((import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/issues");
         setIssues(data);
       } catch (error) {
         console.error("Error fetching issues for map:", error);

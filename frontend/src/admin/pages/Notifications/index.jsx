@@ -7,11 +7,11 @@ import { SectionTitle } from "../../components/ui/SectionTitle";
 import { PriorityBadge } from "../../components/ui/PriorityBadge";
 import { EmptyState } from "../../components/ui/EmptyState";
 
-const API_NOTIFICATIONS_URL = "http://localhost:5000/api/admin/notifications";
-const API_BROADCAST_URL = "http://localhost:5000/api/admin/notifications/broadcast";
-const API_BROADCASTS_HISTORY_URL = "http://localhost:5000/api/admin/notifications/broadcasts";
-const API_TEMPLATES_URL = "http://localhost:5000/api/admin/notifications/templates";
-const API_PREFERENCES_URL = "http://localhost:5000/api/admin/notifications/preferences";
+const API_NOTIFICATIONS_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/admin/notifications";
+const API_BROADCAST_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/admin/notifications/broadcast";
+const API_BROADCASTS_HISTORY_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/admin/notifications/broadcasts";
+const API_TEMPLATES_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/admin/notifications/templates";
+const API_PREFERENCES_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/admin/notifications/preferences";
 
 export default function Notifications() {
   const { token } = useAdminAuth();
