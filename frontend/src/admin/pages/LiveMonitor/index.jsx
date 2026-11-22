@@ -485,7 +485,7 @@ export default function LiveMonitor() {
         </div>
 
         {/* Leaflet GIS Map Container */}
-        <div className="h-[480px] w-full rounded-2xl overflow-hidden border border-gray-250 dark:border-gray-800 shadow-inner relative z-0">
+        <div className="h-[360px] sm:h-[480px] md:h-[520px] w-full rounded-2xl overflow-hidden border border-gray-250 dark:border-gray-800 shadow-inner relative z-0">
           <MapContainer center={mapCenter} zoom={mapZoom} style={{ height: "100%", width: "100%" }} scrollWheelZoom={true}>
             <MapController center={mapCenter} zoom={mapZoom} />
             <TileLayer

@@ -36,7 +36,7 @@ export default function Landing() {
         </span>
         <button
           onClick={() => copyToClipboard("citizen@fixmyward.gov.in | password123", "citizen")}
-          className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded border border-slate-700 transition-all font-mono"
+          className="px-3.5 py-2 min-h-[44px] bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl border border-slate-700 transition-all font-mono inline-flex items-center shadow-sm"
           title="Click to copy citizen credentials"
         >
           {copiedKey === "citizen" ? "✓ Copied Citizen Login!" : "Citizen: citizen@fixmyward.gov.in (password123)"}
@@ -44,7 +44,7 @@ export default function Landing() {
         <span className="text-slate-600 hidden sm:inline">•</span>
         <button
           onClick={() => copyToClipboard("admin@fixmyward.gov.in | adminpassword123", "admin")}
-          className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-amber-300 rounded border border-slate-700 transition-all font-mono"
+          className="px-3.5 py-2 min-h-[44px] bg-slate-800 hover:bg-slate-700 text-amber-300 rounded-xl border border-slate-700 transition-all font-mono inline-flex items-center shadow-sm"
           title="Click to copy admin credentials"
         >
           {copiedKey === "admin" ? "✓ Copied Admin Login!" : "Admin: admin@fixmyward.gov.in (adminpassword123)"}
@@ -121,7 +121,9 @@ export default function Landing() {
         </div>
       </header>
 
-      {/* Hero Section */}
+      {/* Main Content Area */}
+      <main id="main-content">
+        {/* Hero Section */}
       <section className="relative pt-16 pb-20 md:pt-24 md:pb-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
         {/* Floating Pill Tag */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-bold tracking-wide uppercase mb-8 shadow-sm">
@@ -298,53 +300,89 @@ export default function Landing() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 hover:border-slate-700 transition-all flex items-start gap-4">
-            <div className="text-3xl p-2.5 rounded-xl bg-slate-800/80 border border-slate-700">🛣️</div>
+          <Link 
+            to="/report?category=Road"
+            className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 hover:border-emerald-500/50 hover-lift transition-all flex items-start gap-4 group"
+          >
+            <div className="text-3xl p-2.5 rounded-xl bg-slate-800/80 border border-slate-700 group-hover:scale-105 transition-transform">🛣️</div>
             <div>
-              <h3 className="text-base font-bold text-white mb-1">Roads & Footpaths</h3>
+              <div className="flex items-center gap-1.5 mb-1">
+                <h3 className="text-base font-bold text-white group-hover:text-emerald-400 transition-colors">Roads & Footpaths</h3>
+                <span className="text-xs text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">&rarr;</span>
+              </div>
               <p className="text-xs text-slate-300 leading-relaxed">Potholes, surface erosion, damaged speed breakers, missing manholes, and blocked sidewalks.</p>
             </div>
-          </div>
+          </Link>
 
-          <div className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 hover:border-slate-700 transition-all flex items-start gap-4">
-            <div className="text-3xl p-2.5 rounded-xl bg-slate-800/80 border border-slate-700">🚰</div>
+          <Link 
+            to="/report?category=Water"
+            className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 hover:border-emerald-500/50 hover-lift transition-all flex items-start gap-4 group"
+          >
+            <div className="text-3xl p-2.5 rounded-xl bg-slate-800/80 border border-slate-700 group-hover:scale-105 transition-transform">🚰</div>
             <div>
-              <h3 className="text-base font-bold text-white mb-1">Water Supply</h3>
+              <div className="flex items-center gap-1.5 mb-1">
+                <h3 className="text-base font-bold text-white group-hover:text-emerald-400 transition-colors">Water Supply</h3>
+                <span className="text-xs text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">&rarr;</span>
+              </div>
               <p className="text-xs text-slate-300 leading-relaxed">Burst pipelines, potable water wastage, contaminated supply, and valve control failures.</p>
             </div>
-          </div>
+          </Link>
 
-          <div className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 hover:border-slate-700 transition-all flex items-start gap-4">
-            <div className="text-3xl p-2.5 rounded-xl bg-slate-800/80 border border-slate-700">🗑️</div>
+          <Link 
+            to="/report?category=Garbage"
+            className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 hover:border-emerald-500/50 hover-lift transition-all flex items-start gap-4 group"
+          >
+            <div className="text-3xl p-2.5 rounded-xl bg-slate-800/80 border border-slate-700 group-hover:scale-105 transition-transform">🗑️</div>
             <div>
-              <h3 className="text-base font-bold text-white mb-1">Sanitation & Garbage</h3>
+              <div className="flex items-center gap-1.5 mb-1">
+                <h3 className="text-base font-bold text-white group-hover:text-emerald-400 transition-colors">Sanitation & Garbage</h3>
+                <span className="text-xs text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">&rarr;</span>
+              </div>
               <p className="text-xs text-slate-300 leading-relaxed">Overflowing dumpsters, skipped door-to-door collection, and hazardous waste accumulation.</p>
             </div>
-          </div>
+          </Link>
 
-          <div className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 hover:border-slate-700 transition-all flex items-start gap-4">
-            <div className="text-3xl p-2.5 rounded-xl bg-slate-800/80 border border-slate-700">💡</div>
+          <Link 
+            to="/report?category=Electricity"
+            className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 hover:border-emerald-500/50 hover-lift transition-all flex items-start gap-4 group"
+          >
+            <div className="text-3xl p-2.5 rounded-xl bg-slate-800/80 border border-slate-700 group-hover:scale-105 transition-transform">💡</div>
             <div>
-              <h3 className="text-base font-bold text-white mb-1">Electricity & Streetlights</h3>
+              <div className="flex items-center gap-1.5 mb-1">
+                <h3 className="text-base font-bold text-white group-hover:text-emerald-400 transition-colors">Electricity & Streetlights</h3>
+                <span className="text-xs text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">&rarr;</span>
+              </div>
               <p className="text-xs text-slate-300 leading-relaxed">Non-functional streetlights, dark accident-prone zones, low-hanging cables, and rusted poles.</p>
             </div>
-          </div>
+          </Link>
 
-          <div className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 hover:border-slate-700 transition-all flex items-start gap-4">
-            <div className="text-3xl p-2.5 rounded-xl bg-slate-800/80 border border-slate-700">🌊</div>
+          <Link 
+            to="/report?category=Water"
+            className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 hover:border-emerald-500/50 hover-lift transition-all flex items-start gap-4 group"
+          >
+            <div className="text-3xl p-2.5 rounded-xl bg-slate-800/80 border border-slate-700 group-hover:scale-105 transition-transform">🌊</div>
             <div>
-              <h3 className="text-base font-bold text-white mb-1">Stormwater Drains</h3>
+              <div className="flex items-center gap-1.5 mb-1">
+                <h3 className="text-base font-bold text-white group-hover:text-emerald-400 transition-colors">Stormwater Drains</h3>
+                <span className="text-xs text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">&rarr;</span>
+              </div>
               <p className="text-xs text-slate-300 leading-relaxed">Clogged drainage trenches, missing concrete slabs, monsoon flood spots, and culvert blockages.</p>
             </div>
-          </div>
+          </Link>
 
-          <div className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 hover:border-slate-700 transition-all flex items-start gap-4">
-            <div className="text-3xl p-2.5 rounded-xl bg-slate-800/80 border border-slate-700">🌳</div>
+          <Link 
+            to="/report?category=Surroundings"
+            className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 hover:border-emerald-500/50 hover-lift transition-all flex items-start gap-4 group"
+          >
+            <div className="text-3xl p-2.5 rounded-xl bg-slate-800/80 border border-slate-700 group-hover:scale-105 transition-transform">🌳</div>
             <div>
-              <h3 className="text-base font-bold text-white mb-1">Public Amenities</h3>
+              <div className="flex items-center gap-1.5 mb-1">
+                <h3 className="text-base font-bold text-white group-hover:text-emerald-400 transition-colors">Public Amenities</h3>
+                <span className="text-xs text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">&rarr;</span>
+              </div>
               <p className="text-xs text-slate-300 leading-relaxed">Dangerous tree limbs obstructing traffic, park bench damages, and public sanitation blockages.</p>
             </div>
-          </div>
+          </Link>
         </div>
       </section>
 
@@ -450,6 +488,7 @@ export default function Landing() {
           </div>
         </div>
       </section>
+      </main>
 
       {/* Footer */}
       <footer className="py-12 bg-[#080C14] border-t border-slate-800/80 text-slate-400 text-xs">

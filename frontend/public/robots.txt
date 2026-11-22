@@ -1,0 +1,6 @@
+# Fix My Ward Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://fix-my-ward-alpha.vercel.app/sitemap.xml

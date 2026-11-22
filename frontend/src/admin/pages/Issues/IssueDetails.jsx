@@ -534,11 +534,12 @@ export default function IssueDetails() {
             {issue.images && issue.images.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {issue.images.map((imgUrl, index) => (
-                  <div key={index} className="group relative overflow-hidden rounded-2xl border border-gray-250 dark:border-gray-800 bg-slate-100 dark:bg-gray-950">
+                  <div key={index} className="group relative overflow-hidden rounded-2xl border border-gray-250 dark:border-gray-800 bg-slate-100 dark:bg-gray-950 aspect-video">
                     <img
                       src={imgUrl}
                       alt={`Evidence ${index + 1}`}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition duration-300"
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
                     />
                     <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                       <a
