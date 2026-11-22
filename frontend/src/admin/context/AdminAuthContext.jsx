@@ -1,9 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
+import { apiUrl } from "../../config/api";
 
 const AdminAuthContext = createContext(null);
 
-const API_BASE_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/admin";
+const getAdminApiUrl = (endpoint = "") => {
+  return apiUrl(`/api/admin${endpoint}`);
+};
 
 export const AdminAuthProvider = ({ children }) => {
   const [admin, setAdmin] = useState(null);
@@ -21,7 +24,7 @@ export const AdminAuthProvider = ({ children }) => {
       }
 
       try {
-        const response = await axios.get(`${API_BASE_URL}/profile`, {
+        const response = await axios.get(getAdminApiUrl("/profile"), {
           headers: {
             Authorization: `Bearer ${storedToken}`,
           },
@@ -47,7 +50,7 @@ export const AdminAuthProvider = ({ children }) => {
   const login = async (email, password) => {
     setError("");
     try {
-      const response = await axios.post(`${API_BASE_URL}/login`, {
+      const response = await axios.post(getAdminApiUrl("/login"), {
         email: email.trim(),
         password,
       });

@@ -2,8 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+/* UI/UX Pro Max Accessible Civic & High-Visibility Theme */
+:root {
+  font-size: 17.5px; /* Boost overall scale across the site */
+  --civic-navy: #0B132B;
+  --civic-blue: #1C3F73;
+  --civic-accent-blue: #2563EB;
+  --civic-emerald: #059669;
+  --civic-amber: #D97706;
+}
+
+html {
   font-family: "Times New Roman", Times, Georgia, serif;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: "Times New Roman", Times, Georgia, serif !important;
+  color: #F1F5F9;
+  background-color: #070D1E;
+  line-height: 1.6;
+}
+
+/* Ensure all form elements and buttons inherit Times New Roman with clear readability */
+button, input, select, textarea {
+  font-family: "Times New Roman", Times, Georgia, serif !important;
+}
+
+/* Accessible high-contrast text helpers */
+.text-high-contrast {
+  color: #FFFFFF !important;
+}
+
+.text-high-contrast-muted {
+  color: #CBD5E1 !important;
+}
+
+/* Focus indicator conforming to WCAG 2.2 criteria (3px prominent ring) */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 3px solid #38BDF8 !important;
+  outline-offset: 2px !important;
 }
 
 @keyframes spin-slow {
@@ -22,23 +63,14 @@
 .theme-transition *::after {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, box-shadow;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+  transition-duration: 250ms;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes scaleIn {
-  from { transform: scale(0.95); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-scale-in {
-  animation: scaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
