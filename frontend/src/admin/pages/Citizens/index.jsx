@@ -8,7 +8,7 @@ import { StatCard } from "../../components/ui/StatCard";
 import { Table } from "../../components/ui/Table";
 import { EmptyState } from "../../components/ui/EmptyState";
 
-const API_CITIZENS_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/admin/citizens";
+const API_CITIZENS_URL = (import.meta.env.VITE_API_URL || "https://fix-my-ward-r2zv.onrender.com") + "/api/admin/citizens";
 
 export default function Citizens() {
   const { token } = useAdminAuth();

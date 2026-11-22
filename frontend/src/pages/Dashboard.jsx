@@ -97,7 +97,7 @@ function Dashboard() {
         };
         
         try {
-          const { data: me } = await axios.get((import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/auth/me", { headers });
+          const { data: me } = await axios.get((import.meta.env.VITE_API_URL || "https://fix-my-ward-r2zv.onrender.com") + "/api/auth/me", { headers });
           if (me) {
             userDetails = me;
             localStorage.setItem("name", me.name || "");
@@ -109,15 +109,15 @@ function Dashboard() {
         }
 
         // Fetch all issues
-        const { data: allIssues } = await axios.get((import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/issues");
+        const { data: allIssues } = await axios.get((import.meta.env.VITE_API_URL || "https://fix-my-ward-r2zv.onrender.com") + "/api/issues");
         setIssues(allIssues);
 
         // Fetch user's issues
-        const { data: userIssues } = await axios.get((import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/issues/my", { headers });
+        const { data: userIssues } = await axios.get((import.meta.env.VITE_API_URL || "https://fix-my-ward-r2zv.onrender.com") + "/api/issues/my", { headers });
         setMyIssues(userIssues);
 
         // Fetch notifications
-        const { data: notifs } = await axios.get((import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/notifications", { headers });
+        const { data: notifs } = await axios.get((import.meta.env.VITE_API_URL || "https://fix-my-ward-r2zv.onrender.com") + "/api/notifications", { headers });
         setNotifications(notifs);
 
         setProfile({
@@ -141,7 +141,7 @@ function Dashboard() {
   const handleMarkAsRead = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.put(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/notifications/${id}/read`, {}, {
+      await axios.put(`${import.meta.env.VITE_API_URL || "https://fix-my-ward-r2zv.onrender.com"}/api/notifications/${id}/read`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setNotifications(prev => prev.map(n => n._id === id ? { ...n, read: true } : n));

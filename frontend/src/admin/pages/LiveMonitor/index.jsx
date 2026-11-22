@@ -15,11 +15,11 @@ import { EmptyState } from "../../components/ui/EmptyState";
 import { QuickActionsPanel } from "../../components/live/QuickActionsPanel";
 import { WardMonitoringPanel } from "../../components/live/WardMonitoringPanel";
 
-const API_OVERVIEW_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/admin/live/overview";
-const API_ACTIVITY_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/admin/live/activity";
-const API_ISSUES_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/admin/live/issues";
-const API_DEPARTMENTS_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/admin/departments";
-const API_WARDS_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/admin/live/wards";
+const API_OVERVIEW_URL = (import.meta.env.VITE_API_URL || "https://fix-my-ward-r2zv.onrender.com") + "/api/admin/live/overview";
+const API_ACTIVITY_URL = (import.meta.env.VITE_API_URL || "https://fix-my-ward-r2zv.onrender.com") + "/api/admin/live/activity";
+const API_ISSUES_URL = (import.meta.env.VITE_API_URL || "https://fix-my-ward-r2zv.onrender.com") + "/api/admin/live/issues";
+const API_DEPARTMENTS_URL = (import.meta.env.VITE_API_URL || "https://fix-my-ward-r2zv.onrender.com") + "/api/admin/departments";
+const API_WARDS_URL = (import.meta.env.VITE_API_URL || "https://fix-my-ward-r2zv.onrender.com") + "/api/admin/live/wards";
 
 // Coimbatore Center coordinates for default GIS map view
 const COIMBATORE_CENTER = [11.0168, 76.9558];

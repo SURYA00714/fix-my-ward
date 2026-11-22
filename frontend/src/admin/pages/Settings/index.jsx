@@ -9,7 +9,7 @@ import { Table } from "../../components/ui/Table";
 import { EmptyState } from "../../components/ui/EmptyState";
 import { Badge } from "../../components/ui/Badge";
 
-const API_BASE = (import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/admin/system";
+const API_BASE = (import.meta.env.VITE_API_URL || "https://fix-my-ward-r2zv.onrender.com") + "/api/admin/system";
 
 export default function Settings() {
   const { token, admin: currentAdmin } = useAdminAuth();

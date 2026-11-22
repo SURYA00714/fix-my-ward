@@ -25,7 +25,7 @@ export default function CitizenProfile() {
       setLoading(true);
       setError(null);
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/admin/citizens/${id}`, {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL || "https://fix-my-ward-r2zv.onrender.com"}/api/admin/citizens/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (res.data.success) {

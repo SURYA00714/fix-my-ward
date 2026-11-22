@@ -140,7 +140,7 @@ function ReportIssue() {
 
     try {
       // Client-Side Duplicate Detection
-      const { data: existingIssues } = await axios.get((import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/issues");
+      const { data: existingIssues } = await axios.get((import.meta.env.VITE_API_URL || "https://fix-my-ward-r2zv.onrender.com") + "/api/issues");
       
       const duplicates = existingIssues.filter(issue => {
         if (issue.category !== form.category || !issue.location?.coordinates) return false;
@@ -177,7 +177,7 @@ function ReportIssue() {
         forceSubmit,
       };
 
-      await axios.post((import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/issues", payload, {
+      await axios.post((import.meta.env.VITE_API_URL || "https://fix-my-ward-r2zv.onrender.com") + "/api/issues", payload, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -195,7 +195,7 @@ function ReportIssue() {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      await axios.post(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/issues/${issueId}/upvote`, {}, {
+      await axios.post(`${import.meta.env.VITE_API_URL || "https://fix-my-ward-r2zv.onrender.com"}/api/issues/${issueId}/upvote`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert("Existing issue upvoted successfully!");

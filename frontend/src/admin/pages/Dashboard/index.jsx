@@ -9,7 +9,7 @@ import { Table } from "../../components/ui/Table";
 import { StatusBadge } from "../../components/ui/StatusBadge";
 import { PriorityBadge } from "../../components/ui/PriorityBadge";
 
-const API_DASHBOARD_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/admin/dashboard/kpis";
+const API_DASHBOARD_URL = (import.meta.env.VITE_API_URL || "https://fix-my-ward-r2zv.onrender.com") + "/api/admin/dashboard/kpis";
 
 export default function Dashboard() {
   const { admin, token } = useAdminAuth();
