@@ -10,6 +10,7 @@ import {
   MoonIcon
 } from "../components/SvgIcon";
 import { useTheme } from "../hooks/useTheme";
+import ThemeToggle from "../components/ThemeToggle";
 
 function Profile() {
   const navigate = useNavigate();
@@ -87,13 +88,7 @@ function Profile() {
           </div>
 
           {/* Theme Toggle Button */}
-          <button 
-            onClick={toggleTheme}
-            className="p-2 bg-gray-100 dark:bg-gray-800/80 hover:bg-gray-200 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-750 rounded-xl transition text-slate-500 dark:text-gray-400 hover:text-slate-800 dark:hover:text-white"
-            title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
-          >
-            {theme === "dark" ? <SunIcon className="w-4 h-4 text-emerald-400" /> : <MoonIcon className="w-4 h-4 text-emerald-600" />}
-          </button>
+          <ThemeToggle size="sm" />
         </div>
       </header>
 

@@ -10,6 +10,53 @@ import { EmptyState } from "../../components/ui/EmptyState";
 
 const API_BASE_URL = (import.meta.env.VITE_API_URL || "https://fix-my-ward-r2zv.onrender.com") + "/api/admin/issues";
 
+// Predefined field officer roster categorized by municipal department
+const DEPARTMENT_OFFICERS = {
+  "Roads & Infrastructure": [
+    "Er. K. Ramesh (Assistant Engineer - Roads)",
+    "Er. R. Sundaram (Assistant Executive Engineer)",
+    "Er. P. Senthil Kumar (Junior Engineer - Pavements)",
+    "Er. M. Sivakumar (Ward Road Inspector)",
+  ],
+  "Water Supply Board": [
+    "Er. V. Rajesh (Assistant Engineer - Water Distribution)",
+    "Er. M. Saravanan (Pipeline & Leakage Inspector)",
+    "Er. T. Gomathi (Junior Engineer - Water Works)",
+  ],
+  "Sanitation & Solid Waste": [
+    "Dr. M. Anitha (Sanitary Officer - Ward Health)",
+    "Mr. S. Karthikeyan (Solid Waste Operations Supervisor)",
+    "Mr. A. Selvam (Field Sanitation Inspector)",
+  ],
+  "Electrical Works": [
+    "Er. S. Karthik (Assistant Engineer - Streetlighting)",
+    "Er. D. Venkatesh (Junior Engineer - Ward Grid)",
+    "Er. N. Balaji (Emergency Line Inspector)",
+  ],
+  "Stormwater Drainage": [
+    "Er. B. Prakash (Assistant Engineer - Drainage)",
+    "Er. G. Ravikumar (Canal Maintenance Supervisor)",
+  ],
+  "Parks & Forestry": [
+    "Mr. K. Natarajan (Horticultural Officer)",
+    "Mr. C. Balan (Urban Forestry Inspector)",
+  ],
+  "Public Health": [
+    "Dr. S. Meenakshi (Municipal Health Officer)",
+    "Mr. N. Manikandan (Vector Control Inspector)",
+  ],
+};
+
+const GENERAL_OFFICERS = [
+  "Er. K. Ramesh (Assistant Engineer - Roads)",
+  "Er. V. Rajesh (Assistant Engineer - Water Distribution)",
+  "Dr. M. Anitha (Sanitary Officer - Ward Health)",
+  "Er. S. Karthik (Assistant Engineer - Streetlighting)",
+  "Er. B. Prakash (Assistant Engineer - Drainage)",
+  "Er. R. Sundaram (Assistant Executive Engineer)",
+  "Er. P. Senthil Kumar (Junior Engineer)",
+];
+
 export default function IssueDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -637,16 +684,51 @@ export default function IssueDetails() {
               </div>
 
               <div>
-                <label className="block text-[10px] font-black text-gray-500 dark:text-gray-400 uppercase mb-1">
-                  Assigned Field Officer (Optional)
+                <label className="block text-[10px] font-black text-gray-500 dark:text-gray-400 uppercase mb-1 flex items-center justify-between">
+                  <span>Assigned Field Officer (Optional)</span>
+                  <span className="text-[9px] text-emerald-600 dark:text-emerald-400 font-mono font-bold">List Selection</span>
                 </label>
-                <input
-                  type="text"
-                  value={assignOfficer}
-                  onChange={(e) => setAssignOfficer(e.target.value)}
-                  placeholder="e.g. Officer K. Ramesh (AE)"
-                  className="w-full bg-slate-50 dark:bg-gray-950 border border-gray-250 dark:border-gray-800 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 dark:text-white focus:outline-none focus:border-emerald-500 placeholder-slate-400"
-                />
+                {(() => {
+                  const officerOptions = (assignDept && DEPARTMENT_OFFICERS[assignDept]) || GENERAL_OFFICERS;
+                  const isPredefined = officerOptions.includes(assignOfficer) || !assignOfficer;
+
+                  return (
+                    <div className="space-y-2">
+                      <select
+                        value={isPredefined ? assignOfficer : "__custom__"}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          if (val === "__custom__") {
+                            if (isPredefined) setAssignOfficer("");
+                          } else {
+                            setAssignOfficer(val);
+                          }
+                        }}
+                        className="w-full bg-slate-50 dark:bg-gray-950 border border-gray-250 dark:border-gray-800 rounded-xl px-3 py-2 text-xs font-bold text-slate-800 dark:text-white focus:outline-none focus:border-emerald-500 cursor-pointer"
+                      >
+                        <option value="">-- No Officer Assigned (Optional) --</option>
+                        <optgroup label={assignDept ? `${assignDept} Officers` : "Municipal Field Officers"}>
+                          {officerOptions.map((off) => (
+                            <option key={off} value={off}>
+                              {off}
+                            </option>
+                          ))}
+                        </optgroup>
+                        <option value="__custom__">✏️ Other / Enter Custom Officer Name...</option>
+                      </select>
+
+                      {(!isPredefined || assignOfficer === "__custom__") && (
+                        <input
+                          type="text"
+                          value={assignOfficer === "__custom__" ? "" : assignOfficer}
+                          onChange={(e) => setAssignOfficer(e.target.value)}
+                          placeholder="Type officer name & designation..."
+                          className="w-full bg-slate-50 dark:bg-gray-950 border border-emerald-500/60 dark:border-emerald-500/80 rounded-xl px-3 py-2 text-xs font-semibold text-slate-800 dark:text-white focus:outline-none focus:ring-1 focus:ring-emerald-500 placeholder-slate-400"
+                        />
+                      )}
+                    </div>
+                  );
+                })()}
               </div>
 
               <button

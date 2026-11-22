@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../../hooks/useTheme";
 import { useAdminAuth } from "../../context/AdminAuthContext";
 import { SunIcon, MoonIcon } from "../../../components/SvgIcon";
+import ThemeToggle from "../../../components/ThemeToggle";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -57,13 +58,7 @@ export default function Login() {
 
       {/* Floating Theme Toggle */}
       <div className="absolute top-6 right-6">
-        <button 
-          onClick={toggleTheme}
-          className="p-2.5 bg-white dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-800 rounded-xl transition text-slate-500 dark:text-gray-400"
-          title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
-        >
-          {theme === "dark" ? <SunIcon className="w-4 h-4 text-emerald-400" /> : <MoonIcon className="w-4 h-4 text-emerald-600" />}
-        </button>
+        <ThemeToggle size="md" />
       </div>
 
       <div className="max-w-md w-full bg-white dark:bg-gray-900 border border-gray-250 dark:border-gray-800/80 rounded-3xl p-8 shadow-xl relative z-10">

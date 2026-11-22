@@ -21,6 +21,7 @@ import {
 } from "../components/SvgIcon";
 import { Spinner } from "../components/LoadingSkeleton";
 import { useTheme } from "../hooks/useTheme";
+import ThemeToggle from "../components/ThemeToggle";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -215,13 +216,7 @@ function Dashboard() {
           <div className="flex items-center gap-4 relative" ref={dropdownRef}>
             
             {/* Theme Switcher Button */}
-            <button 
-              onClick={toggleTheme}
-              className="p-2.5 bg-gray-100 dark:bg-gray-900/60 hover:bg-gray-200 dark:hover:bg-gray-800/80 border border-gray-200 dark:border-gray-800 rounded-xl transition text-slate-500 dark:text-gray-400 hover:text-slate-800 dark:hover:text-white"
-              title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            >
-              {theme === "dark" ? <SunIcon className="w-4 h-4 text-emerald-400" /> : <MoonIcon className="w-4 h-4 text-emerald-600" />}
-            </button>
+            <ThemeToggle size="md" />
 
             {/* Notification Bell Dropdown Button */}
             <button 

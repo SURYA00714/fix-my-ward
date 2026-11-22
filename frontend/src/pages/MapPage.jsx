@@ -10,6 +10,7 @@ import {
 } from "../components/SvgIcon";
 import { Spinner } from "../components/LoadingSkeleton";
 import { useTheme } from "../hooks/useTheme";
+import ThemeToggle from "../components/ThemeToggle";
 
 function MapPage() {
   const [issues, setIssues] = useState([]);
@@ -58,8 +59,10 @@ function MapPage() {
           <span className="text-gray-300 dark:text-gray-600 font-light">|</span>
           <h1 className="text-lg font-black tracking-tight text-slate-850 dark:text-white">City Issue Map</h1>
         </div>
-        <button 
-          onClick={toggleView}
+        <div className="flex items-center gap-3">
+          <ThemeToggle size="sm" />
+          <button 
+            onClick={toggleView}
           className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition shadow-lg border ${
             isHeatmap 
               ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20 hover:bg-emerald-500/20" 
@@ -78,6 +81,7 @@ function MapPage() {
             </>
           )}
         </button>
+        </div>
       </header>
 
       <div className="flex-grow relative">

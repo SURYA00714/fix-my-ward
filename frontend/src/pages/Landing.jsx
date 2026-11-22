@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import ThemeToggle from "../components/ThemeToggle";
 
 export default function Landing() {
   const navigate = useNavigate();
@@ -89,8 +90,10 @@ export default function Landing() {
             </Link>
           </nav>
 
-          {/* Action Header Buttons */}
+          {/* Action Header Buttons & Theme Toggle */}
           <div className="flex items-center gap-3">
+            <ThemeToggle size="md" />
+
             {isLoggedIn ? (
               <Link
                 to="/dashboard"

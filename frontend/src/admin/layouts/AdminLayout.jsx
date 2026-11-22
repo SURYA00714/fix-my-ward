@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate, Outlet } from "react-router-dom";
 import { useTheme } from "../../hooks/useTheme";
 import { useAdminAuth } from "../context/AdminAuthContext";
 import { apiUrl } from "../../config/api";
+import ThemeToggle from "../../components/ThemeToggle";
 import {
   DashboardIcon,
   IssuesIcon,
@@ -291,13 +292,7 @@ export default function AdminLayout() {
             </div>
 
             {/* Theme Toggle Button */}
-            <button
-              onClick={toggleTheme}
-              className="p-2.5 bg-slate-50 dark:bg-gray-800/50 hover:bg-slate-100 dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-800 rounded-xl text-slate-500 dark:text-gray-400 hover:text-slate-800 dark:hover:text-white transition"
-              title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            >
-              {theme === "dark" ? <SunIcon className="w-4 h-4 text-emerald-450" /> : <MoonIcon className="w-4 h-4 text-emerald-600" />}
-            </button>
+            <ThemeToggle size="md" />
 
             {/* Notification Bell with live telemetry */}
             <div className="relative" ref={notifRef}>

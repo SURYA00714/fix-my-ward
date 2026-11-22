@@ -9,6 +9,7 @@ import {
 } from "../components/SvgIcon";
 import { CardSkeleton, Spinner } from "../components/LoadingSkeleton";
 import { useTheme } from "../hooks/useTheme";
+import ThemeToggle from "../components/ThemeToggle";
 
 // Helper function to calculate distance in km (Haversine)
 function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
@@ -109,16 +110,19 @@ function PublicReports() {
       <div className="absolute top-[-20%] right-[-10%] w-96 h-96 bg-teal-500/[0.03] dark:bg-teal-500/5 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[128px] pointer-events-none"></div>
 
       <header className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 p-4 sticky top-0 z-20 shadow-sm dark:shadow-md">
-        <div className="max-w-4xl mx-auto flex items-center gap-3">
-          <Link 
-            to="/dashboard" 
-            className="flex items-center text-slate-500 dark:text-gray-400 hover:text-slate-800 dark:hover:text-white transition font-semibold text-sm"
-          >
-            <ArrowLeftIcon className="w-4 h-4 mr-1.5" />
-            Back
-          </Link>
-          <span className="text-gray-300 dark:text-gray-600 font-light">|</span>
-          <h1 className="text-lg font-black tracking-tight text-slate-805 dark:text-white">Public Reports</h1>
+        <div className="max-w-4xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Link 
+              to="/dashboard" 
+              className="flex items-center text-slate-500 dark:text-gray-400 hover:text-slate-800 dark:hover:text-white transition font-semibold text-sm"
+            >
+              <ArrowLeftIcon className="w-4 h-4 mr-1.5" />
+              Back
+            </Link>
+            <span className="text-gray-300 dark:text-gray-600 font-light">|</span>
+            <h1 className="text-lg font-black tracking-tight text-slate-805 dark:text-white">Public Reports</h1>
+          </div>
+          <ThemeToggle size="sm" />
         </div>
       </header>
 

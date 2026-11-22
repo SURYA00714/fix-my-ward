@@ -5,6 +5,7 @@ import { EyeIcon, EyeOffIcon } from "../components/SvgIcon";
 import { Spinner } from "../components/LoadingSkeleton";
 import { useTheme } from "../hooks/useTheme";
 import { apiUrl } from "../config/api";
+import ThemeToggle from "../components/ThemeToggle";
 
 function Login() {
   const [form, setForm] = useState({
@@ -65,6 +66,10 @@ function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#0B0F19] text-slate-100 relative overflow-hidden px-4 font-sans">
+      {/* Top right theme toggle */}
+      <div className="fixed top-6 right-6 z-50">
+        <ThemeToggle size="md" />
+      </div>
       {/* Background ambient lighting */}
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none"></div>
       <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none"></div>
