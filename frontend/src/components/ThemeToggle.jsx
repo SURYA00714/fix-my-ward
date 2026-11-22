@@ -5,10 +5,10 @@ export function ThemeToggle({ className = "", showLabel = false, size = "md" }) 
   const isDark = theme === "dark";
 
   const sizeClasses = {
-    sm: "w-8 h-8 text-xs",
-    md: "w-9 h-9 text-sm",
-    lg: "px-3.5 py-2 text-xs",
-  }[size] || "w-9 h-9 text-sm";
+    sm: "w-10 h-10 min-h-[44px] min-w-[44px] text-xs p-2.5",
+    md: "w-11 h-11 min-h-[44px] min-w-[44px] text-sm p-2.5",
+    lg: "px-4 py-2.5 min-h-[44px] text-xs",
+  }[size] || "w-11 h-11 min-h-[44px] min-w-[44px] text-sm p-2.5";
 
   return (
     <button
