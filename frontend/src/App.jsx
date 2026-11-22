@@ -2,9 +2,11 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, lazy, Suspense } from "react";
 import axios from "axios";
 import ProtectedRoute from "./components/ProtectedRoute";
+import CivicLoader from "./components/CivicLoader";
 
 // Lazy-loaded Citizen pages
 const Landing = lazy(() => import("./pages/Landing"));
+const LoadingPage = lazy(() => import("./pages/LoadingPage"));
 const Login = lazy(() => import("./pages/Login"));
 const Register = lazy(() => import("./pages/Register"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -49,16 +51,17 @@ function App() {
   }, []);
 
   return (
-    <Suspense fallback={<PageLoader />}>
+    <Suspense fallback={<CivicLoader />}>
       <Routes>
-        {/* Root Route: Auto-detect session or go to Registration */}
+        {/* Root Route: Auto-detect session or go to Landing Page */}
         <Route 
           path="/" 
           element={
-            localStorage.getItem("token") ? <Navigate to="/dashboard" /> : <Navigate to="/register" />
+            localStorage.getItem("token") ? <Navigate to="/dashboard" /> : <Landing />
           } 
         />
         <Route path="/landing" element={<Landing />} />
+        <Route path="/loading" element={<LoadingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
