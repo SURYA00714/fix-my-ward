@@ -23,6 +23,9 @@ connectDB();
 
 const app = express();
 
+// Required on Render / reverse proxy so express-rate-limit correctly identifies client IPs
+app.set("trust proxy", 1);
+
 // Security HTTP headers & Logging
 app.use(helmet());
 app.use(morgan("dev"));
