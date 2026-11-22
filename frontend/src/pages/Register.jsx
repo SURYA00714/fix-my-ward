@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import axiosInstance from "axios";
+import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { EyeIcon, EyeOffIcon, PublicIcon } from "../components/SvgIcon";
 import { Spinner } from "../components/LoadingSkeleton";
 import { useTheme } from "../hooks/useTheme";
+import { apiUrl } from "../config/api";
 
 function Register() {
   const [form, setForm] = useState({
@@ -40,7 +41,7 @@ function Register() {
     setError("");
 
     try {
-      await axiosInstance.post((import.meta.env.VITE_API_URL || "http://localhost:5000") + "/api/auth/register", form);
+      await axios.post(apiUrl("/api/auth/register"), form);
       
       alert("Registration successful! Please login with your credentials.");
       

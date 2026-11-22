@@ -12,9 +12,8 @@ export default function Landing() {
     setTimeout(() => setCopiedKey(null), 2500);
   };
 
-  const handleReportClick = (e) => {
+  const handleReportClick = () => {
     if (!isLoggedIn) {
-      // Direct gracefully to login with prompt
       navigate("/login");
     } else {
       navigate("/report");
@@ -22,86 +21,94 @@ export default function Landing() {
   };
 
   return (
-    <div className="min-h-screen bg-[#070D1E] text-slate-100 font-serif selection:bg-emerald-500 selection:text-slate-950">
-      {/* Top Municipal Notification Banner for Instant Testing Credentials */}
-      <div className="bg-[#0E1A38] border-b border-[#283E70] px-4 py-2.5 text-center text-sm font-sans flex flex-wrap items-center justify-center gap-3">
-        <span className="font-semibold text-amber-300 flex items-center gap-1.5 text-sm">
-          <span>🔑</span> Pre-seeded Demo Logins:
+    <div className="min-h-screen bg-[#0B0F19] text-slate-100 font-sans selection:bg-emerald-500 selection:text-slate-950 relative overflow-hidden">
+      {/* Background Decorative Lighting */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-emerald-500/10 via-blue-600/5 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute top-[800px] left-[-200px] w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[140px] pointer-events-none"></div>
+      <div className="absolute top-[1600px] right-[-200px] w-[600px] h-[600px] bg-emerald-600/5 rounded-full blur-[140px] pointer-events-none"></div>
+
+      {/* Top Demo Credentials Quick-Access Bar */}
+      <div className="bg-[#111827]/90 border-b border-slate-800/80 px-4 py-2 text-center text-xs flex flex-wrap items-center justify-center gap-3 relative z-50">
+        <span className="font-semibold text-emerald-400 flex items-center gap-1.5">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Quick Demo Credentials:
         </span>
         <button
           onClick={() => copyToClipboard("citizen@fixmyward.gov.in | password123", "citizen")}
-          className="px-3 py-1 bg-[#14244B] hover:bg-[#1E3A8A] text-slate-200 text-xs rounded border border-[#283E70] transition-colors"
+          className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded border border-slate-700 transition-all font-mono"
           title="Click to copy citizen credentials"
         >
-          {copiedKey === "citizen" ? "✓ Copied Citizen!" : "Citizen: citizen@fixmyward.gov.in (password123)"}
+          {copiedKey === "citizen" ? "✓ Copied Citizen Login!" : "Citizen: citizen@fixmyward.gov.in (password123)"}
         </button>
-        <span className="text-slate-600 hidden sm:inline">|</span>
+        <span className="text-slate-600 hidden sm:inline">•</span>
         <button
           onClick={() => copyToClipboard("admin@fixmyward.gov.in | adminpassword123", "admin")}
-          className="px-3 py-1 bg-[#14244B] hover:bg-[#1E3A8A] text-amber-300 text-xs rounded border border-[#283E70] transition-colors"
+          className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-amber-300 rounded border border-slate-700 transition-all font-mono"
           title="Click to copy admin credentials"
         >
-          {copiedKey === "admin" ? "✓ Copied Admin!" : "Admin: admin@fixmyward.gov.in (adminpassword123)"}
+          {copiedKey === "admin" ? "✓ Copied Admin Login!" : "Admin: admin@fixmyward.gov.in (adminpassword123)"}
         </button>
       </div>
 
-      {/* Main Navigation Bar */}
-      <header className="border-b border-[#283E70] bg-[#070D1E]/95 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+      {/* Main GovTech Navigation Header */}
+      <header className="border-b border-slate-800/60 bg-[#0B0F19]/85 backdrop-blur-xl sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           {/* Logo & Civic Branding */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-12 h-12 rounded-xl bg-[#0E1A38] border-2 border-emerald-500/50 flex items-center justify-center text-2xl shadow-lg shadow-emerald-950/40 group-hover:border-emerald-400 transition-all">
-              🏛️
+          <Link to="/" className="flex items-center gap-3.5 group">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 p-0.5 shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+              <div className="w-full h-full bg-[#0E1526] rounded-[10px] flex items-center justify-center text-xl">
+                🏛️
+              </div>
             </div>
             <div>
-              <span className="text-2xl font-bold tracking-wider text-white uppercase block leading-tight">
+              <span className="text-xl font-extrabold tracking-tight text-white block leading-tight">
                 Fix My Ward
               </span>
-              <span className="text-xs tracking-widest text-emerald-400 uppercase font-bold block">
-                Civic Grievance & Ward Management Network
+              <span className="text-[11px] font-semibold tracking-wider text-emerald-400 uppercase block">
+                Civic Redressal Network
               </span>
             </div>
           </Link>
 
-          {/* Nav Links */}
-          <nav className="hidden lg:flex items-center gap-8 text-base font-bold text-slate-200">
-            <a href="#workflow" className="hover:text-emerald-400 transition-colors">
+          {/* Navigation Links */}
+          <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-300">
+            <a href="#how-it-works" className="hover:text-emerald-400 transition-colors">
               How It Works
             </a>
             <a href="#categories" className="hover:text-emerald-400 transition-colors">
               Civic Categories
             </a>
             <a href="#portals" className="hover:text-emerald-400 transition-colors">
-              Portals & Access
+              Portals
             </a>
             <Link 
               to={isLoggedIn ? "/map" : "/login"} 
-              className="text-cyan-400 hover:text-cyan-300 transition-colors flex items-center gap-1.5"
+              className="hover:text-cyan-400 transition-colors flex items-center gap-1.5 text-cyan-400/90"
             >
               <span>🗺️</span> Ward GIS Map
             </Link>
           </nav>
 
           {/* Action Header Buttons */}
-          <div className="flex items-center gap-3.5">
+          <div className="flex items-center gap-3">
             {isLoggedIn ? (
               <Link
                 to="/dashboard"
-                className="px-5 py-2.5 text-base bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg shadow-md transition-all flex items-center gap-2"
+                className="px-5 py-2.5 text-sm bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl shadow-lg shadow-emerald-500/20 transition-all flex items-center gap-2"
               >
-                <span>📊</span> Go to Dashboard
+                <span>📊</span> Dashboard
               </Link>
             ) : (
               <>
                 <Link
                   to="/login"
-                  className="px-5 py-2.5 text-base text-slate-100 hover:text-white bg-[#0E1A38] hover:bg-[#14244B] border-2 border-[#283E70] hover:border-slate-400 rounded-lg font-bold transition-all"
+                  className="px-4 py-2 text-sm text-slate-200 hover:text-white bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 rounded-xl font-semibold transition-all"
                 >
                   Sign In
                 </Link>
                 <Link
                   to="/register"
-                  className="px-5 py-2.5 text-base bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg shadow-lg shadow-emerald-950/50 hover:shadow-emerald-800/60 transition-all"
+                  className="px-4 py-2 text-sm bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl shadow-md shadow-emerald-500/20 hover:shadow-emerald-500/30 transition-all"
                 >
                   Citizen Sign Up
                 </Link>
@@ -112,162 +119,159 @@ export default function Landing() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative pt-16 pb-24 md:pt-24 md:pb-32 overflow-hidden border-b border-[#283E70]">
-        {/* Ambient Gradient Glows */}
-        <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/15 rounded-full blur-[150px] pointer-events-none"></div>
+      <section className="relative pt-16 pb-20 md:pt-24 md:pb-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+        {/* Floating Pill Tag */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-bold tracking-wide uppercase mb-8 shadow-sm">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Integrated Municipal Grievance & Infrastructure Redressal
+        </div>
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0E1A38] border-2 border-emerald-500/40 text-emerald-300 text-sm font-bold uppercase tracking-wider mb-8 shadow-md">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            Official Ward Grievance Resolution & Operations Platform
+        {/* Main Hero Header */}
+        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] mb-6 max-w-5xl mx-auto">
+          Report Civic Issues. <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
+            Track Real-Time Resolution.
+          </span>
+        </h1>
+
+        {/* Subtitle */}
+        <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
+          A high-transparency platform connecting residents with municipal administration. Report potholes, water leaks, uncollected garbage, and broken streetlights with verified GPS precision.
+        </p>
+
+        {/* Action Buttons Group */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 max-w-xl mx-auto">
+          <button
+            onClick={handleReportClick}
+            className="w-full sm:w-auto px-8 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-base shadow-xl shadow-emerald-500/25 transition-all transform hover:-translate-y-0.5 text-center flex items-center justify-center gap-2.5 cursor-pointer"
+          >
+            <span>📢</span> Report an Issue Now
+          </button>
+          <Link
+            to={isLoggedIn ? "/map" : "/login"}
+            className="w-full sm:w-auto px-7 py-4 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-700/80 hover:border-slate-600 text-slate-100 hover:text-white font-semibold text-base transition-all transform hover:-translate-y-0.5 text-center flex items-center justify-center gap-2.5"
+          >
+            <span>📍</span> Explore Ward Map
+          </Link>
+          <Link
+            to="/admin/login"
+            className="w-full sm:w-auto px-6 py-4 rounded-xl bg-slate-900/60 hover:bg-slate-800 border border-amber-500/30 hover:border-amber-400 text-amber-300 font-semibold text-base transition-all text-center flex items-center justify-center gap-2"
+          >
+            <span>🛡️</span> Admin Portal
+          </Link>
+        </div>
+
+        {/* High-Impact Metrics Strip */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto text-left">
+          <div className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 backdrop-blur-md hover:border-slate-700 transition-all">
+            <span className="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono block">100%</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-200 mt-1 block">Ward Coverage</span>
+            <span className="text-xs text-slate-400 mt-0.5 block">Full municipal boundary scope</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight leading-tight mb-8">
-            Report Civic Defects. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
-              Track Municipal Resolution.
-            </span>
-          </h1>
-
-          <p className="text-xl sm:text-2xl text-slate-200 max-w-3xl mx-auto mb-12 leading-relaxed font-normal">
-            A high-transparency platform connecting citizens directly with municipal operations. Report road potholes, water leaks, broken streetlights, and garbage dumps with real-time GPS mapping and verifiable progress tracking.
-          </p>
-
-          {/* Primary Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-5 justify-center items-center mb-16">
-            <button
-              onClick={handleReportClick}
-              className="w-full sm:w-auto px-9 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-lg shadow-xl shadow-emerald-950/60 transition-all transform hover:-translate-y-0.5 text-center flex items-center justify-center gap-3 cursor-pointer"
-            >
-              <span className="text-2xl">📢</span> Report an Issue Now
-            </button>
-            <Link
-              to={isLoggedIn ? "/map" : "/login"}
-              className="w-full sm:w-auto px-9 py-4 rounded-xl bg-[#0E1A38] border-2 border-[#283E70] hover:border-cyan-400 text-slate-100 hover:text-white font-bold text-lg transition-all transform hover:-translate-y-0.5 text-center flex items-center justify-center gap-3 shadow-lg"
-            >
-              <span className="text-2xl">📍</span> View Ward GIS Map
-            </Link>
-            <Link
-              to="/admin/login"
-              className="w-full sm:w-auto px-7 py-4 rounded-xl bg-[#0E1A38] border-2 border-amber-500/50 hover:border-amber-400 text-amber-300 hover:bg-amber-950/40 font-bold text-lg transition-all text-center flex items-center justify-center gap-3 shadow-lg"
-            >
-              <span className="text-2xl">🛡️</span> Admin Portal
-            </Link>
+          <div className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 backdrop-blur-md hover:border-slate-700 transition-all">
+            <span className="text-3xl sm:text-4xl font-extrabold text-cyan-400 font-mono block">GPS</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-200 mt-1 block">Geo-Tagged Accuracy</span>
+            <span className="text-xs text-slate-400 mt-0.5 block">Precise street-level coordinates</span>
           </div>
 
-          {/* Key Metric Highlights Strip */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-8 rounded-2xl bg-[#0E1A38]/90 border-2 border-[#283E70] text-left shadow-2xl">
-            <div className="border-r border-[#283E70] pr-4">
-              <span className="text-3xl md:text-5xl font-black text-emerald-400 block font-mono">100%</span>
-              <span className="text-sm text-slate-200 font-bold uppercase tracking-wider mt-1 block">Ward Coverage</span>
-              <span className="text-xs text-slate-400 mt-0.5 block">All municipal zones connected</span>
-            </div>
-            <div className="md:border-r border-[#283E70] pr-4">
-              <span className="text-3xl md:text-5xl font-black text-cyan-400 block font-mono">GPS</span>
-              <span className="text-sm text-slate-200 font-bold uppercase tracking-wider mt-1 block">Geo-Tagged Accuracy</span>
-              <span className="text-xs text-slate-400 mt-0.5 block">Exact coordinates on map</span>
-            </div>
-            <div className="border-r border-[#283E70] pr-4">
-              <span className="text-3xl md:text-5xl font-black text-amber-400 block font-mono">24-48h</span>
-              <span className="text-sm text-slate-200 font-bold uppercase tracking-wider mt-1 block">Routing Dispatch</span>
-              <span className="text-xs text-slate-400 mt-0.5 block">Automated department alerts</span>
-            </div>
-            <div>
-              <span className="text-3xl md:text-5xl font-black text-emerald-400 block font-mono">Public</span>
-              <span className="text-sm text-slate-200 font-bold uppercase tracking-wider mt-1 block">Auditable Lifecycle</span>
-              <span className="text-xs text-slate-400 mt-0.5 block">Transparent status stages</span>
-            </div>
+          <div className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 backdrop-blur-md hover:border-slate-700 transition-all">
+            <span className="text-3xl sm:text-4xl font-extrabold text-amber-400 font-mono block">24-48h</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-200 mt-1 block">Department Dispatch</span>
+            <span className="text-xs text-slate-400 mt-0.5 block">Direct field squad routing</span>
+          </div>
+
+          <div className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 backdrop-blur-md hover:border-slate-700 transition-all">
+            <span className="text-3xl sm:text-4xl font-extrabold text-teal-300 font-mono block">Audited</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-200 mt-1 block">Lifecycle Transparency</span>
+            <span className="text-xs text-slate-400 mt-0.5 block">Citizen-verified resolution</span>
           </div>
         </div>
       </section>
 
-      {/* 4-Step Structured Workflow Section */}
-      <section id="workflow" className="py-24 bg-[#070D1E] border-b border-[#283E70]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-sm uppercase tracking-widest text-emerald-400 font-bold mb-3">
+      {/* 4-Step Resolution Pipeline Section */}
+      <section id="how-it-works" className="py-20 bg-[#0E1526]/50 border-t border-slate-800/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <span className="text-xs uppercase tracking-widest text-emerald-400 font-bold mb-2 block">
               Standard Operating Procedure
-            </h2>
-            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
               From Citizen Report to Field Resolution
-            </h3>
-            <p className="text-slate-200 text-lg mt-4 leading-relaxed">
-              Every civic complaint follows a rigorous 4-step governance cycle to eliminate delays, prevent duplicate requests, and ensure verifiable outcomes.
+            </h2>
+            <p className="text-slate-400 text-base mt-3">
+              A transparent 4-stage pipeline that eliminates bureaucratic friction and ensures accountability.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {/* Step 1 */}
-            <div className="p-7 rounded-2xl bg-[#0E1A38] border-2 border-[#283E70] hover:border-emerald-500/60 transition-all flex flex-col justify-between shadow-xl">
+            <div className="p-6 rounded-2xl bg-[#111827]/70 border border-slate-800 hover:border-emerald-500/40 transition-all flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-xl bg-[#14244B] border-2 border-emerald-500/50 text-emerald-300 font-mono font-black text-lg flex items-center justify-center mb-5">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center mb-4">
                   01
                 </div>
-                <h4 className="text-xl font-bold text-white mb-2">1. Incident Capture</h4>
-                <p className="text-base text-slate-300 leading-relaxed">
-                  Citizen snaps a photo of the defect, assigns category (Roads, Water, Waste), and captures GPS location automatically.
+                <h3 className="text-lg font-bold text-white mb-2">1. Snap & Geotag</h3>
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  Citizen snaps a photo of the defect, selects the category, and the portal tags the exact GPS coordinates automatically.
                 </p>
               </div>
-              <button 
+              <button
                 onClick={handleReportClick}
-                className="mt-6 text-sm font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-1 text-left"
+                className="mt-6 text-xs font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-1 text-left cursor-pointer"
               >
-                Submit a Report →
+                Submit Report →
               </button>
             </div>
 
-            {/* Step 2 */}
-            <div className="p-7 rounded-2xl bg-[#0E1A38] border-2 border-[#283E70] hover:border-cyan-500/60 transition-all flex flex-col justify-between shadow-xl">
+            <div className="p-6 rounded-2xl bg-[#111827]/70 border border-slate-800 hover:border-cyan-500/40 transition-all flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-xl bg-[#14244B] border-2 border-cyan-500/50 text-cyan-300 font-mono font-black text-lg flex items-center justify-center mb-5">
+                <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 font-bold flex items-center justify-center mb-4">
                   02
                 </div>
-                <h4 className="text-xl font-bold text-white mb-2">2. GIS Mapping</h4>
-                <p className="text-base text-slate-300 leading-relaxed">
-                  The issue is plotted live on the Ward GIS Map. Fellow residents can upvote the issue to prioritize community urgency.
+                <h3 className="text-lg font-bold text-white mb-2">2. GIS Ward Mapping</h3>
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  The issue appears publicly on the Ward GIS Map. Neighborhood residents can upvote to highlight urgent hazards.
                 </p>
               </div>
-              <Link 
+              <Link
                 to={isLoggedIn ? "/map" : "/login"}
-                className="mt-6 text-sm font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1"
+                className="mt-6 text-xs font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1"
               >
                 View Map Layer →
               </Link>
             </div>
 
-            {/* Step 3 */}
-            <div className="p-7 rounded-2xl bg-[#0E1A38] border-2 border-[#283E70] hover:border-amber-500/60 transition-all flex flex-col justify-between shadow-xl">
+            <div className="p-6 rounded-2xl bg-[#111827]/70 border border-slate-800 hover:border-amber-500/40 transition-all flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-xl bg-[#14244B] border-2 border-amber-500/50 text-amber-300 font-mono font-black text-lg flex items-center justify-center mb-5">
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold flex items-center justify-center mb-4">
                   03
                 </div>
-                <h4 className="text-xl font-bold text-white mb-2">3. Admin Routing</h4>
-                <p className="text-base text-slate-300 leading-relaxed">
-                  Municipal Officers review evidence, assign severity (Critical to Low), and route the work order to the relevant department.
+                <h3 className="text-lg font-bold text-white mb-2">3. Admin Dispatch</h3>
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  Municipal Officers verify photographic proof, assign severity levels, and route work orders to the responsible department.
                 </p>
               </div>
-              <Link 
+              <Link
                 to="/admin/login"
-                className="mt-6 text-sm font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1"
+                className="mt-6 text-xs font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1"
               >
                 Admin Verification →
               </Link>
             </div>
 
-            {/* Step 4 */}
-            <div className="p-7 rounded-2xl bg-[#0E1A38] border-2 border-[#283E70] hover:border-emerald-500/60 transition-all flex flex-col justify-between shadow-xl">
+            <div className="p-6 rounded-2xl bg-[#111827]/70 border border-slate-800 hover:border-emerald-500/40 transition-all flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-xl bg-[#14244B] border-2 border-emerald-500/50 text-emerald-300 font-mono font-black text-lg flex items-center justify-center mb-5">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center mb-4">
                   04
                 </div>
-                <h4 className="text-xl font-bold text-white mb-2">4. Resolution Audit</h4>
-                <p className="text-base text-slate-300 leading-relaxed">
-                  Field repair teams resolve the physical defect. Status is logged as Resolved with public verification for complete auditability.
+                <h3 className="text-lg font-bold text-white mb-2">4. Resolution & Audit</h3>
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  Field repair teams address the defect. Completion evidence is published with status marked Resolved for public audit.
                 </p>
               </div>
-              <Link 
+              <Link
                 to={isLoggedIn ? "/public-reports" : "/login"}
-                className="mt-6 text-sm font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-1"
+                className="mt-6 text-xs font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-1"
               >
                 Audit Public Feed →
               </Link>
@@ -276,175 +280,165 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Core Civic Categories Grid */}
-      <section id="categories" className="py-24 bg-[#0A1128] border-b border-[#283E70]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-sm uppercase tracking-widest text-emerald-400 font-bold mb-3">
-              Comprehensive Civic Coverage
-            </h2>
-            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
-              Supported Municipal Infrastructure Categories
-            </h3>
-            <p className="text-slate-200 text-lg mt-4 leading-relaxed">
-              Fix My Ward covers all primary civic pain points across urban and suburban local bodies.
-            </p>
+      {/* Civic Categories Grid */}
+      <section id="categories" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <span className="text-xs uppercase tracking-widest text-emerald-400 font-bold mb-2 block">
+            Comprehensive Coverage
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+            Supported Municipal Infrastructure Categories
+          </h2>
+          <p className="text-slate-400 text-base mt-3">
+            Covering all essential civic services across urban and suburban local bodies.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 hover:border-slate-700 transition-all flex items-start gap-4">
+            <div className="text-3xl p-2.5 rounded-xl bg-slate-800/80 border border-slate-700">🛣️</div>
+            <div>
+              <h3 className="text-base font-bold text-white mb-1">Roads & Footpaths</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">Potholes, surface erosion, damaged speed breakers, missing manholes, and blocked sidewalks.</p>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="p-7 rounded-2xl bg-[#0E1A38] border-2 border-[#283E70] flex items-start gap-5 shadow-lg">
-              <div className="text-4xl p-3 rounded-xl bg-[#14244B] border border-[#283E70]">🛣️</div>
-              <div>
-                <h4 className="text-xl font-bold text-white mb-1.5">Roads & Footpaths</h4>
-                <p className="text-base text-slate-300">Potholes, surface erosion, damaged speed breakers, missing manhole covers, and blocked sidewalks.</p>
-              </div>
+          <div className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 hover:border-slate-700 transition-all flex items-start gap-4">
+            <div className="text-3xl p-2.5 rounded-xl bg-slate-800/80 border border-slate-700">🚰</div>
+            <div>
+              <h3 className="text-base font-bold text-white mb-1">Water Supply</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">Burst pipelines, potable water wastage, contaminated supply, and valve control failures.</p>
             </div>
+          </div>
 
-            <div className="p-7 rounded-2xl bg-[#0E1A38] border-2 border-[#283E70] flex items-start gap-5 shadow-lg">
-              <div className="text-4xl p-3 rounded-xl bg-[#14244B] border border-[#283E70]">🚰</div>
-              <div>
-                <h4 className="text-xl font-bold text-white mb-1.5">Water Supply</h4>
-                <p className="text-base text-slate-300">Burst pipelines, potable water wastage, contaminated drinking water, and low distribution pressure.</p>
-              </div>
+          <div className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 hover:border-slate-700 transition-all flex items-start gap-4">
+            <div className="text-3xl p-2.5 rounded-xl bg-slate-800/80 border border-slate-700">🗑️</div>
+            <div>
+              <h3 className="text-base font-bold text-white mb-1">Sanitation & Garbage</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">Overflowing dumpsters, skipped door-to-door collection, and hazardous waste accumulation.</p>
             </div>
+          </div>
 
-            <div className="p-7 rounded-2xl bg-[#0E1A38] border-2 border-[#283E70] flex items-start gap-5 shadow-lg">
-              <div className="text-4xl p-3 rounded-xl bg-[#14244B] border border-[#283E70]">🗑️</div>
-              <div>
-                <h4 className="text-xl font-bold text-white mb-1.5">Sanitation & Garbage</h4>
-                <p className="text-base text-slate-300">Overflowing community dumpsters, skipped door-to-door collection, and hazardous waste accumulation.</p>
-              </div>
+          <div className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 hover:border-slate-700 transition-all flex items-start gap-4">
+            <div className="text-3xl p-2.5 rounded-xl bg-slate-800/80 border border-slate-700">💡</div>
+            <div>
+              <h3 className="text-base font-bold text-white mb-1">Electricity & Streetlights</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">Non-functional streetlights, dark accident-prone zones, low-hanging cables, and rusted poles.</p>
             </div>
+          </div>
 
-            <div className="p-7 rounded-2xl bg-[#0E1A38] border-2 border-[#283E70] flex items-start gap-5 shadow-lg">
-              <div className="text-4xl p-3 rounded-xl bg-[#14244B] border border-[#283E70]">💡</div>
-              <div>
-                <h4 className="text-xl font-bold text-white mb-1.5">Electricity & Lights</h4>
-                <p className="text-base text-slate-300">Dark zones with non-working streetlights, hazardous low-hanging power cables, and damaged fuse boxes.</p>
-              </div>
+          <div className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 hover:border-slate-700 transition-all flex items-start gap-4">
+            <div className="text-3xl p-2.5 rounded-xl bg-slate-800/80 border border-slate-700">🌊</div>
+            <div>
+              <h3 className="text-base font-bold text-white mb-1">Stormwater Drains</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">Clogged drainage trenches, missing concrete slabs, monsoon flood spots, and culvert blockages.</p>
             </div>
+          </div>
 
-            <div className="p-7 rounded-2xl bg-[#0E1A38] border-2 border-[#283E70] flex items-start gap-5 shadow-lg">
-              <div className="text-4xl p-3 rounded-xl bg-[#14244B] border border-[#283E70]">🌊</div>
-              <div>
-                <h4 className="text-xl font-bold text-white mb-1.5">Stormwater Drains</h4>
-                <p className="text-base text-slate-300">Clogged drain channels, missing concrete slabs, rainwater flooding, and mosquito breeding spots.</p>
-              </div>
-            </div>
-
-            <div className="p-7 rounded-2xl bg-[#0E1A38] border-2 border-[#283E70] flex items-start gap-5 shadow-lg">
-              <div className="text-4xl p-3 rounded-xl bg-[#14244B] border border-[#283E70]">🌳</div>
-              <div>
-                <h4 className="text-xl font-bold text-white mb-1.5">Public Amenities</h4>
-                <p className="text-base text-slate-300">Fallen tree branches blocking traffic, damaged public park benches, and community sanitary block defects.</p>
-              </div>
+          <div className="p-6 rounded-2xl bg-[#111827]/60 border border-slate-800 hover:border-slate-700 transition-all flex items-start gap-4">
+            <div className="text-3xl p-2.5 rounded-xl bg-slate-800/80 border border-slate-700">🌳</div>
+            <div>
+              <h3 className="text-base font-bold text-white mb-1">Public Amenities</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">Dangerous tree limbs obstructing traffic, park bench damages, and public sanitation blockages.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Dual Operating Portals Section */}
-      <section id="portals" className="py-24 bg-[#070D1E] border-b border-[#283E70]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-sm uppercase tracking-widest text-emerald-400 font-bold mb-3">
-              Role-Based Portals
+      {/* Dual Portals Section */}
+      <section id="portals" className="py-20 bg-[#0E1526]/50 border-t border-slate-800/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <span className="text-xs uppercase tracking-widest text-emerald-400 font-bold mb-2 block">
+              Authentication Gateways
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+              Access Your Operating Portal
             </h2>
-            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
-              Select Your Operating Portal
-            </h3>
-            <p className="text-slate-200 text-lg mt-4 leading-relaxed">
-              Dedicated interfaces tailored for residents to report issues, and municipal officers to coordinate operations.
+            <p className="text-slate-400 text-base mt-3">
+              Dedicated interfaces tailored for residents to report complaints, and municipal officers to dispatch work orders.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Citizen Portal Card */}
-            <div className="p-9 rounded-2xl bg-[#0E1A38] border-2 border-emerald-500/50 flex flex-col justify-between shadow-2xl">
+            <div className="p-8 rounded-3xl bg-[#111827]/80 border border-emerald-500/30 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none"></div>
               <div>
-                <div className="inline-block px-3.5 py-1 rounded-full bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-xs font-bold uppercase tracking-wider mb-5">
-                  Citizen Reporting Portal
-                </div>
-                <h4 className="text-3xl font-bold text-white mb-4">For Residents & Neighborhoods</h4>
-                <p className="text-slate-200 text-lg mb-6 leading-relaxed">
-                  Submit grievances directly from your phone or PC, view nearby issues submitted by fellow residents, and upvote to accelerate action.
+                <span className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-4 border border-emerald-500/20">
+                  Citizen Portal
+                </span>
+                <h3 className="text-2xl font-bold text-white mb-3">For Residents & Neighborhoods</h3>
+                <p className="text-slate-300 text-sm mb-6 leading-relaxed">
+                  Submit grievances from your phone or PC, view nearby issues submitted by fellow residents, and upvote to accelerate action.
                 </p>
-                <div className="space-y-3 mb-8 text-base text-slate-200">
-                  <div className="flex items-center gap-3">
-                    <span className="text-emerald-400 text-xl font-bold">✓</span> Photo upload & auto GPS geolocation tagging
+                <div className="space-y-2.5 mb-8 text-sm text-slate-300">
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-emerald-400 font-bold">✓</span> Photo upload & automated GPS coordinates
                   </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-emerald-400 text-xl font-bold">✓</span> Real-time ticket lifecycle tracking dashboard
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-emerald-400 font-bold">✓</span> Real-time ticket lifecycle tracking dashboard
                   </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-emerald-400 text-xl font-bold">✓</span> Community upvote system to highlight critical issues
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-emerald-400 font-bold">✓</span> Community upvote system for urgent civic hazards
                   </div>
                 </div>
 
-                {/* Pre-seeded demo box */}
-                <div className="p-4 rounded-xl bg-[#14244B] border border-[#283E70] mb-8 text-sm">
-                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 block mb-1">
-                    Pre-seeded Citizen Account
-                  </span>
-                  <div className="text-slate-200 font-mono text-xs">
-                    Email: <span className="text-white font-bold">citizen@fixmyward.gov.in</span> | Pass: <span className="text-white font-bold">password123</span>
-                  </div>
+                <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 mb-6 text-xs">
+                  <span className="text-slate-400 block mb-0.5 font-semibold">Pre-seeded Citizen Account:</span>
+                  <span className="font-mono text-emerald-300">citizen@fixmyward.gov.in</span> • <span className="font-mono text-slate-300">password123</span>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Link
                   to="/login"
-                  className="flex-1 py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-center rounded-xl text-lg transition-colors shadow-lg"
+                  className="flex-1 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-center rounded-xl text-sm transition-all shadow-md shadow-emerald-500/20"
                 >
                   Citizen Login
                 </Link>
                 <Link
                   to="/register"
-                  className="flex-1 py-4 bg-[#14244B] hover:bg-[#1E3A8A] text-slate-100 hover:text-white text-center rounded-xl text-lg transition-colors border-2 border-[#283E70]"
+                  className="flex-1 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 text-center rounded-xl text-sm transition-all border border-slate-700 font-semibold"
                 >
                   Create Account
                 </Link>
               </div>
             </div>
 
-            {/* Administration Portal Card */}
-            <div className="p-9 rounded-2xl bg-[#0E1A38] border-2 border-amber-500/50 flex flex-col justify-between shadow-2xl">
+            {/* Admin Command Portal Card */}
+            <div className="p-8 rounded-3xl bg-[#111827]/80 border border-amber-500/30 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-amber-500/5 rounded-full blur-2xl pointer-events-none"></div>
               <div>
-                <div className="inline-block px-3.5 py-1 rounded-full bg-amber-950 border border-amber-500/40 text-amber-300 text-xs font-bold uppercase tracking-wider mb-5">
+                <span className="inline-block px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 text-xs font-bold uppercase tracking-wider mb-4 border border-amber-500/20">
                   Administrative Command
-                </div>
-                <h4 className="text-3xl font-bold text-white mb-4">For Municipal Officers & Engineers</h4>
-                <p className="text-slate-200 text-lg mb-6 leading-relaxed">
+                </span>
+                <h3 className="text-2xl font-bold text-white mb-3">For Municipal Officers & Engineers</h3>
+                <p className="text-slate-300 text-sm mb-6 leading-relaxed">
                   Authoritative interface for ward superintendents. Inspect photographic evidence, assign priority levels, and route tickets to specialized field squads.
                 </p>
-                <div className="space-y-3 mb-8 text-base text-slate-200">
-                  <div className="flex items-center gap-3">
-                    <span className="text-amber-400 text-xl font-bold">✓</span> Ward-by-ward workload analysis & analytics dashboard
+                <div className="space-y-2.5 mb-8 text-sm text-slate-300">
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-amber-400 font-bold">✓</span> Ward-by-ward workload analysis & analytics dashboard
                   </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-amber-400 text-xl font-bold">✓</span> Priority adjustment & department routing (Roads, Water, Waste)
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-amber-400 font-bold">✓</span> Priority adjustment & department routing (Roads, Water, Waste)
                   </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-amber-400 text-xl font-bold">✓</span> Live inspection monitor & citizen directory management
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-amber-400 font-bold">✓</span> Live inspection monitor & citizen directory management
                   </div>
                 </div>
 
-                {/* Pre-seeded demo box */}
-                <div className="p-4 rounded-xl bg-[#14244B] border border-[#283E70] mb-8 text-sm">
-                  <span className="text-xs font-bold uppercase tracking-wider text-amber-400 block mb-1">
-                    Pre-seeded Administrator Account
-                  </span>
-                  <div className="text-slate-200 font-mono text-xs">
-                    Email: <span className="text-white font-bold">admin@fixmyward.gov.in</span> | Pass: <span className="text-white font-bold">adminpassword123</span>
-                  </div>
+                <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 mb-6 text-xs">
+                  <span className="text-slate-400 block mb-0.5 font-semibold">Pre-seeded Admin Account:</span>
+                  <span className="font-mono text-amber-300">admin@fixmyward.gov.in</span> • <span className="font-mono text-slate-300">adminpassword123</span>
                 </div>
               </div>
 
               <div>
                 <Link
                   to="/admin/login"
-                  className="block w-full py-4 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-center rounded-xl text-lg transition-colors shadow-lg"
+                  className="block w-full py-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-center rounded-xl text-sm transition-all shadow-md shadow-amber-500/20"
                 >
                   Access Administration Command →
                 </Link>
@@ -454,20 +448,20 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Municipal Footer */}
-      <footer className="py-14 bg-[#050914] text-slate-300 text-base border-t border-[#283E70]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex items-center gap-4">
-            <span className="text-3xl">🏛️</span>
+      {/* Footer */}
+      <footer className="py-12 bg-[#080C14] border-t border-slate-800/80 text-slate-400 text-xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl">🏛️</span>
             <div>
-              <p className="font-bold text-white text-lg uppercase leading-none">Fix My Ward</p>
-              <p className="text-slate-400 text-sm mt-1">Tamil Nadu Municipal Grievance Redressal & Operations Network</p>
+              <p className="font-bold text-white text-sm">Fix My Ward</p>
+              <p className="text-slate-400">Integrated Civic Grievance & Infrastructure Redressal System</p>
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-7 text-sm font-bold text-slate-200">
+          <div className="flex flex-wrap gap-6 text-xs font-semibold text-slate-300">
             <Link to={isLoggedIn ? "/map" : "/login"} className="hover:text-emerald-400 transition-colors">
-              GIS Map
+              Ward GIS Map
             </Link>
             <Link to="/login" className="hover:text-emerald-400 transition-colors">
               Citizen Portal
@@ -476,12 +470,12 @@ export default function Landing() {
               Admin Command
             </Link>
             <Link to="/loading" className="hover:text-cyan-400 transition-colors">
-              System Diagnostics
+              Diagnostics
             </Link>
           </div>
 
-          <div className="text-slate-400 text-center md:text-right text-xs font-mono">
-            Times New Roman • High-Visibility Civic Design
+          <div className="text-slate-400 text-center md:text-right font-mono">
+            GovTech Modern Edition
           </div>
         </div>
       </footer>

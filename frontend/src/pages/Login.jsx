@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import { EyeIcon, EyeOffIcon, PublicIcon } from "../components/SvgIcon";
+import { EyeIcon, EyeOffIcon } from "../components/SvgIcon";
 import { Spinner } from "../components/LoadingSkeleton";
 import { useTheme } from "../hooks/useTheme";
 import { apiUrl } from "../config/api";
@@ -64,47 +64,48 @@ function Login() {
   };
 
   return (
-    <div 
-      className="min-h-screen flex items-center justify-center bg-[#070D1E] text-slate-100 relative overflow-hidden px-4 font-serif"
-    >
-      {/* Background glow */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none"></div>
+    <div className="min-h-screen flex items-center justify-center bg-[#0B0F19] text-slate-100 relative overflow-hidden px-4 font-sans">
+      {/* Background ambient lighting */}
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none"></div>
       
-      <div className="bg-[#0E1A38] border-2 border-[#283E70] p-8 sm:p-11 rounded-3xl shadow-2xl w-full max-w-lg z-10 transition duration-300">
+      <div className="bg-[#111827]/90 backdrop-blur-xl border border-slate-800 p-8 sm:p-10 rounded-3xl shadow-2xl w-full max-w-md z-10 transition duration-300">
         
         {/* Branding Badge */}
-        <div className="flex flex-col items-center mb-7">
-          <Link to="/" className="w-16 h-16 bg-[#14244B] text-emerald-400 rounded-2xl flex items-center justify-center mb-3.5 border-2 border-emerald-500/40 shadow-lg text-3xl">
-            🏛️
+        <div className="flex flex-col items-center mb-6">
+          <Link to="/" className="w-14 h-14 bg-gradient-to-tr from-emerald-600 to-teal-400 p-0.5 rounded-2xl flex items-center justify-center mb-3 shadow-lg shadow-emerald-500/20">
+            <div className="w-full h-full bg-[#0E1526] rounded-[14px] flex items-center justify-center text-2xl">
+              🏛️
+            </div>
           </Link>
-          <span className="text-xs uppercase font-bold tracking-[0.2em] text-emerald-400">Fix My Ward</span>
-          <h2 className="text-3xl font-bold text-white tracking-tight mt-1.5">Citizen Portal Login</h2>
-          <p className="text-slate-300 mt-1 text-sm">Sign in to report and track your neighborhood grievances</p>
+          <span className="text-[11px] uppercase font-bold tracking-widest text-emerald-400">Fix My Ward</span>
+          <h2 className="text-2xl font-extrabold text-white tracking-tight mt-1">Citizen Portal Login</h2>
+          <p className="text-slate-400 mt-1 text-xs text-center">Sign in to report and track your neighborhood civic grievances</p>
         </div>
 
         {/* Quick Demo Fill Helper */}
-        <div className="mb-6 p-3.5 rounded-xl bg-[#14244B] border border-[#283E70] flex items-center justify-between gap-3 text-xs">
-          <span className="text-slate-200">
-            Evaluating the app? Click to auto-fill:
+        <div className="mb-5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between gap-2.5 text-xs">
+          <span className="text-slate-300">
+            Testing account?
           </span>
           <button
             type="button"
             onClick={handleFillDemo}
-            className="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded shadow transition-colors cursor-pointer"
+            className="px-2.5 py-1 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-lg shadow transition-colors cursor-pointer text-xs"
           >
-            Fill Demo Citizen
+            Auto-fill Demo Citizen
           </button>
         </div>
 
         {error && (
-          <div className="bg-red-500/15 border-2 border-red-500/30 text-red-200 px-4 py-3 rounded-xl mb-6 text-sm text-center font-bold">
+          <div className="bg-red-500/10 border border-red-500/30 text-red-300 px-4 py-2.5 rounded-xl mb-5 text-xs text-center font-medium">
             {error}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-bold text-slate-200 uppercase tracking-wider mb-2">
+            <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
               Email Address
             </label>
             <input
@@ -113,13 +114,13 @@ function Login() {
               placeholder="e.g. citizen@fixmyward.gov.in"
               value={form.email}
               onChange={handleChange}
-              className="w-full px-4 py-3.5 rounded-xl bg-[#070D1E] border-2 border-[#283E70] text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 transition-all font-serif text-base"
+              className="w-full px-4 py-3 rounded-xl bg-[#0B0F19] border border-slate-700/80 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all text-sm font-medium"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-slate-200 uppercase tracking-wider mb-2">
+            <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
               Password
             </label>
             <div className="relative">
@@ -129,19 +130,19 @@ function Login() {
                 placeholder="••••••••"
                 value={form.password}
                 onChange={handleChange}
-                className="w-full pl-4 pr-12 py-3.5 rounded-xl bg-[#070D1E] border-2 border-[#283E70] text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 transition-all font-serif text-base"
+                className="w-full pl-4 pr-11 py-3 rounded-xl bg-[#0B0F19] border border-slate-700/80 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all text-sm font-medium"
                 required
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-300 hover:text-white transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors"
                 title={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? (
-                  <EyeOffIcon className="w-5 h-5" />
+                  <EyeOffIcon className="w-4 h-4" />
                 ) : (
-                  <EyeIcon className="w-5 h-5" />
+                  <EyeIcon className="w-4 h-4" />
                 )}
               </button>
             </div>
@@ -150,26 +151,26 @@ function Login() {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full py-4 rounded-xl font-bold text-white text-lg transition-all transform hover:-translate-y-0.5 mt-8 flex items-center justify-center gap-2 cursor-pointer ${
+            className={`w-full py-3.5 rounded-xl font-bold text-slate-950 text-base transition-all transform hover:-translate-y-0.5 mt-6 flex items-center justify-center gap-2 cursor-pointer ${
               loading 
-                ? "bg-emerald-600/50 cursor-not-allowed" 
-                : "bg-emerald-600 hover:bg-emerald-500 shadow-xl shadow-emerald-950/60"
+                ? "bg-emerald-500/50 cursor-not-allowed" 
+                : "bg-emerald-500 hover:bg-emerald-400 shadow-lg shadow-emerald-500/25"
             }`}
           >
-            {loading && <Spinner className="w-5 h-5 text-white" />}
-            {loading ? "Verifying Credentials..." : "Sign In to Citizen Account"}
+            {loading && <Spinner className="w-4 h-4 text-slate-950" />}
+            {loading ? "Verifying Credentials..." : "Sign In to Account"}
           </button>
         </form>
 
-        <div className="mt-8 pt-6 border-t border-[#283E70] flex flex-col items-center gap-3 text-sm">
-          <p className="text-slate-300">
+        <div className="mt-6 pt-5 border-t border-slate-800 flex flex-col items-center gap-2.5 text-xs">
+          <p className="text-slate-400">
             Don't have an account?{" "}
             <Link to="/register" className="text-emerald-400 hover:text-emerald-300 font-bold underline underline-offset-4 transition">
-              Create an account
+              Create citizen account
             </Link>
           </p>
 
-          <Link to="/admin/login" className="text-amber-300 hover:text-amber-200 font-semibold text-xs transition">
+          <Link to="/admin/login" className="text-amber-400/90 hover:text-amber-300 font-medium transition">
             Municipal Officer? Access Administration Portal →
           </Link>
         </div>

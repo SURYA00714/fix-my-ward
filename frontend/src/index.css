@@ -2,18 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-/* UI/UX Pro Max Accessible Civic & High-Visibility Theme */
+/* UI/UX Pro Max Clean Modern GovTech Theme */
 :root {
-  font-size: 17.5px; /* Boost overall scale across the site */
-  --civic-navy: #0B132B;
-  --civic-blue: #1C3F73;
-  --civic-accent-blue: #2563EB;
-  --civic-emerald: #059669;
-  --civic-amber: #D97706;
+  font-size: 16px;
+  --bg-main: #0B0F19;
+  --surface-card: #131B2E;
+  --border-subtle: #202B42;
+  --primary-emerald: #10B981;
+  --accent-blue: #3B82F6;
 }
 
 html {
-  font-family: "Times New Roman", Times, Georgia, serif;
+  font-family: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -21,30 +21,50 @@ html {
 }
 
 body {
-  font-family: "Times New Roman", Times, Georgia, serif !important;
-  color: #F1F5F9;
-  background-color: #070D1E;
+  font-family: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  color: #F8FAFC;
+  background-color: #0B0F19;
   line-height: 1.6;
 }
 
-/* Ensure all form elements and buttons inherit Times New Roman with clear readability */
 button, input, select, textarea {
-  font-family: "Times New Roman", Times, Georgia, serif !important;
+  font-family: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
 }
 
-/* Accessible high-contrast text helpers */
-.text-high-contrast {
-  color: #FFFFFF !important;
-}
-
-.text-high-contrast-muted {
-  color: #CBD5E1 !important;
-}
-
-/* Focus indicator conforming to WCAG 2.2 criteria (3px prominent ring) */
+/* Accessible focus states */
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
-  outline: 3px solid #38BDF8 !important;
+  outline: 2px solid #10B981 !important;
   outline-offset: 2px !important;
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: rgba(19, 27, 46, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(22, 31, 51, 0.85);
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.15);
+}
+
+/* Custom modern scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0F19;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
 }
 
 @keyframes spin-slow {
@@ -56,21 +76,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   animation: spin-slow 20s linear infinite;
 }
 
-/* Global theme transitions */
-.theme-transition,
-.theme-transition *,
-.theme-transition *::before,
-.theme-transition *::after {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, box-shadow;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 250ms;
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.25; transform: scale(1.05); }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.animate-glow {
+  animation: pulseGlow 8s ease-in-out infinite;
 }
