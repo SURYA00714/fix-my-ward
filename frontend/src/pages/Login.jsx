@@ -3,7 +3,6 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { EyeIcon, EyeOffIcon } from "../components/SvgIcon";
 import { Spinner } from "../components/LoadingSkeleton";
-import { useTheme } from "../hooks/useTheme";
 import { apiUrl } from "../config/api";
 import ThemeToggle from "../components/ThemeToggle";
 
@@ -15,7 +14,6 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { theme } = useTheme();
 
   const navigate = useNavigate();
 
@@ -66,6 +64,16 @@ function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#0B0F19] text-slate-100 relative overflow-hidden px-4 font-sans">
+      {/* Top navigation helpers */}
+      <div className="fixed top-6 left-6 z-50">
+        <Link 
+          to="/" 
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white transition shadow-sm"
+        >
+          <span>&larr;</span> Back to Home
+        </Link>
+      </div>
+
       {/* Top right theme toggle */}
       <div className="fixed top-6 right-6 z-50">
         <ThemeToggle size="md" />
@@ -77,7 +85,7 @@ function Login() {
       <div className="bg-[#111827]/90 backdrop-blur-xl border border-slate-800 p-8 sm:p-10 rounded-3xl shadow-2xl w-full max-w-md z-10 transition duration-300">
         
         {/* Branding Badge */}
-        <div className="flex flex-col items-center mb-6">
+        <div className="flex flex-col items-center mb-5">
           <Link to="/" className="w-14 h-14 bg-gradient-to-tr from-emerald-600 to-teal-400 p-0.5 rounded-2xl flex items-center justify-center mb-3 shadow-lg shadow-emerald-500/20">
             <div className="w-full h-full bg-[#0E1526] rounded-[14px] flex items-center justify-center text-2xl">
               🏛️
@@ -86,6 +94,20 @@ function Login() {
           <span className="text-[11px] uppercase font-bold tracking-widest text-emerald-400">Fix My Ward</span>
           <h2 className="text-2xl font-extrabold text-white tracking-tight mt-1">Citizen Portal Login</h2>
           <p className="text-slate-400 mt-1 text-xs text-center">Sign in to report and track your neighborhood civic grievances</p>
+        </div>
+
+        {/* Quick Portal Switcher Tabs */}
+        <div className="flex rounded-2xl bg-[#0B0F19] p-1 mb-5 border border-slate-800/80">
+          <div className="flex-1 py-2 text-xs font-bold rounded-xl text-center flex items-center justify-center gap-1.5 bg-emerald-500 text-slate-950 shadow-sm cursor-default">
+            <span>🏛️</span> Citizen Portal
+          </div>
+          <Link
+            to="/admin/login"
+            className="flex-1 py-2 text-xs font-bold rounded-xl text-center flex items-center justify-center gap-1.5 text-slate-400 hover:text-amber-300 hover:bg-slate-800/50 transition-all"
+            title="Switch to Municipal Officer Login"
+          >
+            <span>🛡️</span> Admin Portal &rarr;
+          </Link>
         </div>
 
         {/* Quick Demo Fill Helper */}
@@ -168,17 +190,23 @@ function Login() {
           </button>
         </form>
 
-        <div className="mt-6 pt-5 border-t border-slate-800 flex flex-col items-center gap-2.5 text-xs">
-          <p className="text-slate-400">
+        <div className="mt-6 pt-5 border-t border-slate-800 flex flex-col gap-3 text-xs">
+          <p className="text-slate-400 text-center">
             Don't have an account?{" "}
             <Link to="/register" className="text-emerald-400 hover:text-emerald-300 font-bold underline underline-offset-4 transition">
               Create citizen account
             </Link>
           </p>
 
-          <Link to="/admin/login" className="text-amber-400/90 hover:text-amber-300 font-medium transition">
-            Municipal Officer? Access Administration Portal →
-          </Link>
+          <div className="pt-2 flex items-center justify-between p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+            <span className="text-slate-400 font-medium">Municipal Officer?</span>
+            <Link 
+              to="/admin/login" 
+              className="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/25 font-bold transition flex items-center gap-1.5"
+            >
+              <span>🛡️</span> Access Admin Portal &rarr;
+            </Link>
+          </div>
         </div>
       </div>
     </div>

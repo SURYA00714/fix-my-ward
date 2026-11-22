@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { useTheme } from "../../../hooks/useTheme";
 import { useAdminAuth } from "../../context/AdminAuthContext";
-import { SunIcon, MoonIcon } from "../../../components/SvgIcon";
 import ThemeToggle from "../../../components/ThemeToggle";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
   const { login, isAuthenticated, error: authError, setError } = useAdminAuth();
 
   const [email, setEmail] = useState("admin@fixmyward.gov.in");
@@ -56,16 +55,26 @@ export default function Login() {
       <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-emerald-500/[0.03] dark:bg-emerald-500/5 rounded-full filter blur-[100px] pointer-events-none"></div>
       <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[400px] h-[400px] bg-teal-500/[0.03] dark:bg-teal-500/5 rounded-full filter blur-[100px] pointer-events-none"></div>
 
+      {/* Top navigation helpers */}
+      <div className="fixed top-6 left-6 z-50">
+        <Link 
+          to="/" 
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/80 dark:bg-gray-900/80 hover:bg-white dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-800 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition shadow-sm backdrop-blur-md"
+        >
+          <span>&larr;</span> Back to Home
+        </Link>
+      </div>
+
       {/* Floating Theme Toggle */}
-      <div className="absolute top-6 right-6">
+      <div className="fixed top-6 right-6 z-50">
         <ThemeToggle size="md" />
       </div>
 
       <div className="max-w-md w-full bg-white dark:bg-gray-900 border border-gray-250 dark:border-gray-800/80 rounded-3xl p-8 shadow-xl relative z-10">
         
         {/* Brand Logo */}
-        <div className="flex flex-col items-center mb-8">
-          <div className="w-12 h-12 bg-emerald-500/10 text-emerald-500 dark:text-emerald-450 rounded-2xl flex items-center justify-center border border-emerald-500/25 mb-4 shadow-[0_0_15px_rgba(16,185,129,0.15)]">
+        <div className="flex flex-col items-center mb-5">
+          <div className="w-12 h-12 bg-emerald-500/10 text-emerald-500 dark:text-emerald-450 rounded-2xl flex items-center justify-center border border-emerald-500/25 mb-3 shadow-[0_0_15px_rgba(16,185,129,0.15)]">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0110 21a3.745 3.745 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.745 3.745 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
             </svg>
@@ -74,6 +83,20 @@ export default function Login() {
           <span className="text-[10px] font-black bg-emerald-500/10 text-emerald-600 dark:text-emerald-450 border border-emerald-500/25 px-2.5 py-0.5 rounded-full mt-2">
             ADMIN PANEL
           </span>
+        </div>
+
+        {/* Quick Portal Switcher Tabs */}
+        <div className="flex rounded-2xl bg-slate-100 dark:bg-gray-950 p-1 mb-5 border border-gray-200 dark:border-gray-800">
+          <Link
+            to="/login"
+            className="flex-1 py-2 text-xs font-bold rounded-xl text-center flex items-center justify-center gap-1.5 text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-white dark:hover:bg-gray-900/60 transition-all"
+            title="Switch to Citizen Portal Login"
+          >
+            <span>🏛️</span> Citizen Portal &rarr;
+          </Link>
+          <div className="flex-1 py-2 text-xs font-bold rounded-xl text-center flex items-center justify-center gap-1.5 bg-emerald-500 text-slate-950 shadow-sm cursor-default">
+            <span>🛡️</span> Admin Command
+          </div>
         </div>
 
         <div className="mb-6 text-center">
@@ -139,6 +162,16 @@ export default function Login() {
             </button>
           </div>
         </form>
+
+        <div className="mt-6 pt-5 border-t border-gray-200 dark:border-gray-800/80 flex items-center justify-between text-xs">
+          <span className="text-gray-500 dark:text-gray-400 font-medium">Looking to report an issue?</span>
+          <Link
+            to="/login"
+            className="px-3 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/25 font-bold transition flex items-center gap-1.5"
+          >
+            <span>🏛️</span> Citizen Portal &rarr;
+          </Link>
+        </div>
       </div>
 
       <div className="mt-8 text-center text-[10px] text-gray-450 dark:text-gray-550 font-medium">
