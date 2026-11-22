@@ -95,12 +95,8 @@ function MapPage() {
           style={{ height: "calc(100vh - 73px)", width: "100%", zIndex: 10 }}
         >
           <TileLayer
-            key={theme}
-            attribution={theme === "dark" ? "© CartoDB" : "© OpenStreetMap"}
-            url={theme === "dark" 
-              ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png" 
-              : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            }
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
           {issues.map((issue) => {

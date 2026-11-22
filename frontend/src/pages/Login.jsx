@@ -136,13 +136,14 @@ function Login() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors"
-                title={showPassword ? "Hide password" : "Show password"}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors cursor-pointer p-1"
+                title={showPassword ? "Password is shown (click to hide)" : "Password is hidden (click to show)"}
+                aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? (
-                  <EyeOffIcon className="w-4 h-4" />
+                  <EyeIcon className="w-5 h-5 text-emerald-400" />
                 ) : (
-                  <EyeIcon className="w-4 h-4" />
+                  <EyeOffIcon className="w-5 h-5 text-slate-400" />
                 )}
               </button>
             </div>

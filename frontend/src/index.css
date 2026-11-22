@@ -37,6 +37,101 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   outline-offset: 2px !important;
 }
 
+/* ==========================================================
+   DAY THEME (LIGHT MODE) HIGH-CONTRAST LEGIBILITY ENHANCEMENTS
+   ========================================================== */
+html:not(.dark),
+html.light {
+  color-scheme: light;
+}
+
+html:not(.dark) body,
+html.light body {
+  color: #0F172A !important;
+  background-color: #F8FAFC !important;
+}
+
+/* Form Labels in Light Theme: Bold, dark & clear */
+html:not(.dark) label,
+html.light label {
+  color: #0F172A !important;
+  font-weight: 700 !important;
+}
+
+/* Form Inputs & Textareas in Light Theme: Crisp white, high-contrast borders & dark text */
+html:not(.dark) input,
+html.light input,
+html:not(.dark) textarea,
+html.light textarea,
+html:not(.dark) select,
+html.light select {
+  color: #0F172A !important;
+  background-color: #FFFFFF !important;
+  border-color: #94A3B8 !important;
+  font-weight: 600 !important;
+}
+
+html:not(.dark) input::placeholder,
+html.light input::placeholder,
+html:not(.dark) textarea::placeholder,
+html.light textarea::placeholder {
+  color: #64748B !important;
+  opacity: 1 !important;
+}
+
+/* Eliminate faint grey body text across all components in Day Theme */
+html:not(.dark) .text-slate-500,
+html.light .text-slate-500,
+html:not(.dark) .text-gray-500,
+html.light .text-gray-500,
+html:not(.dark) .text-gray-400,
+html.light .text-gray-400,
+html:not(.dark) .text-slate-400,
+html.light .text-slate-400 {
+  color: #1E293B !important;
+}
+
+html:not(.dark) .text-slate-600,
+html.light .text-slate-600,
+html:not(.dark) .text-slate-700,
+html.light .text-slate-700 {
+  color: #0F172A !important;
+}
+
+html:not(.dark) .bg-slate-50,
+html.light .bg-slate-50 {
+  background-color: #F1F5F9 !important;
+}
+
+html:not(.dark) .bg-slate-100,
+html.light .bg-slate-100 {
+  background-color: #E2E8F0 !important;
+}
+
+html:not(.dark) .border-gray-200,
+html.light .border-gray-200,
+html:not(.dark) .border-slate-200,
+html.light .border-slate-200 {
+  border-color: #94A3B8 !important;
+}
+
+/* ==========================================================
+   LEAFLET MAP: DARK THEME WITHOUT API KEYS
+   ========================================================== */
+html.dark .leaflet-tile-pane,
+.dark .leaflet-tile-pane {
+  filter: brightness(0.65) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.75);
+}
+
+html.dark .leaflet-marker-pane,
+html.dark .leaflet-popup-pane,
+html.dark .leaflet-control-container,
+.dark .leaflet-marker-pane,
+.dark .leaflet-popup-pane,
+.dark .leaflet-control-container {
+  filter: none !important;
+}
+
 /* Glassmorphism helpers */
 .glass-panel {
   background: rgba(19, 27, 46, 0.7);
