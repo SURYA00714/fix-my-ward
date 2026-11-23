@@ -38,6 +38,20 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 
 /* ==========================================================
+   THEME SPECIFIC BODY BACKGROUNDS & TRANSITIONS
+   ========================================================== */
+html.dark body,
+.dark body {
+  color: #F8FAFC !important;
+  background-color: #0B0F19 !important;
+}
+
+html.dark,
+.dark {
+  color-scheme: dark;
+}
+
+/* ==========================================================
    DAY THEME (LIGHT MODE) HIGH-CONTRAST LEGIBILITY ENHANCEMENTS
    ========================================================== */
 html:not(.dark),

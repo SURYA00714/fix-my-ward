@@ -40,12 +40,21 @@
     </style>
     <script>
       (function() {
-        const savedTheme = localStorage.getItem("fmw-theme") || "dark";
-        document.documentElement.classList.add(savedTheme);
+        try {
+          var savedTheme = localStorage.getItem("fmw-theme");
+          var root = document.documentElement;
+          if (savedTheme === "light") {
+            root.classList.remove("dark");
+            root.classList.add("light");
+          } else {
+            root.classList.remove("light");
+            root.classList.add("dark");
+          }
+        } catch (e) {}
       })();
     </script>
   </head>
-  <body class="bg-[#0B0F19] text-slate-100 antialiased selection:bg-emerald-500 selection:text-slate-950 min-h-[100dvh]">
+  <body class="bg-slate-50 dark:bg-[#0B0F19] text-slate-900 dark:text-slate-100 antialiased selection:bg-emerald-500 selection:text-slate-950 min-h-[100dvh] transition-colors duration-200">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
